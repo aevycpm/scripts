@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Aevy">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4F46E5"/><stop offset=".55" stop-color="#7C3AED"/><stop offset="1" stop-color="#C026D3"/>
+    </linearGradient>
+    <linearGradient id="gl" x1="0" y1="0" x2="0" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fg" x1="0" y1="120" x2="0" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#EDE4FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="118" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="118" fill="url(#gl)"/>
+  <!-- A: a rising peak with a bright node as the crossbar -->
+  <path d="M140 390 L256 134 L372 390" fill="none" stroke="url(#fg)" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="256" cy="326" r="30" fill="#fff"/>
+  <circle cx="256" cy="326" r="12" fill="#C026D3"/>
+</svg>

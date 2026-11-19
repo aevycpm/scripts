@@ -1,0 +1,112 @@
+/* ==========================================================================
+   Aevy — Effects
+   Utility layer: glassmorphism, gradient borders, glow shadows, motion
+   utilities, animated gradients, and floating decorative shapes.
+   Built on top of the keyframes already defined in animations.css.
+   ========================================================================== */
+
+/* ---------------------------------- Smooth scrolling ---------------------------------- */
+html { scroll-behavior: smooth; }
+
+/* ---------------------------------- Glassmorphism ---------------------------------- */
+.glass {
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.glass-dark {
+  background: rgba(18, 12, 32, 0.42);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+/* ---------------------------------- Backdrop blur (standalone) ---------------------------------- */
+.backdrop-blur-sm { backdrop-filter: blur(6px);  -webkit-backdrop-filter: blur(6px); }
+.backdrop-blur    { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.backdrop-blur-lg { backdrop-filter: blur(26px); -webkit-backdrop-filter: blur(26px); }
+
+/* ---------------------------------- Gradient borders ---------------------------------- */
+/* Static ring: sits behind the element via ::before, so it works regardless
+   of the element's own background (element just needs to be opaque). */
+.gradient-border { position: relative; z-index: 0; }
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: var(--brand-gradient);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+/* Rotating gradient ring — a slow conic sweep behind the element */
+.gradient-border-animated { position: relative; z-index: 0; }
+.gradient-border-animated::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, var(--grad-start), var(--grad-mid), var(--grad-end), var(--grad-start));
+  z-index: -1;
+  animation: spin 5s linear infinite;
+}
+
+/* ---------------------------------- Glow shadows ---------------------------------- */
+.glow-shadow    { box-shadow: var(--shadow-glow); }
+.glow-shadow-lg { box-shadow: 0 14px 44px rgba(124, 58, 237, 0.5); }
+.glow-pulse     { animation: pulseGlow 2.4s var(--ease-in-out) infinite; }
+
+/* ---------------------------------- Hover lift ---------------------------------- */
+.hover-lift-sm { transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); }
+.hover-lift-sm:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.hover-lift-lg { transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); }
+.hover-lift-lg:hover { transform: translateY(-10px); box-shadow: var(--shadow-xl); }
+
+/* ---------------------------------- Scale animation ---------------------------------- */
+.hover-scale    { transition: transform var(--dur-base) var(--ease-out); }
+.hover-scale:hover    { transform: scale(1.045); }
+.hover-scale-sm { transition: transform var(--dur-fast) var(--ease-out); }
+.hover-scale-sm:hover { transform: scale(1.02); }
+
+/* ---------------------------------- Animated gradient background ---------------------------------- */
+.animated-gradient-bg {
+  background: linear-gradient(120deg, var(--grad-start), var(--grad-mid), var(--grad-end), var(--grad-mid), var(--grad-start));
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease infinite;
+}
+
+/* ---------------------------------- Floating shapes ---------------------------------- */
+.floating-shapes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: floatY 8s var(--ease-in-out) infinite;
+}
+.floating-shape--1 { width: 90px;  height: 90px;  top: 10%; left: 6%;   background: rgba(255,255,255,0.22); animation-duration: 7s; }
+.floating-shape--2 { width: 50px;  height: 50px;  top: 62%; left: 16%;  background: rgba(255,255,255,0.16); animation-duration: 9s;  animation-delay: 1.2s; }
+.floating-shape--3 { width: 130px; height: 130px; top: 26%; right: 6%;  background: rgba(255,255,255,0.12); animation-duration: 11s; animation-delay: 0.5s; }
+.floating-shape--4 { width: 36px;  height: 36px;  top: 74%; right: 20%; background: rgba(255,255,255,0.28); animation-duration: 6s;  animation-delay: 2s; }
+
+/* Tinted variants for use on light/white backgrounds */
+.floating-shape--tint-1 { background: rgba(124, 58, 237, 0.10); }
+.floating-shape--tint-2 { background: rgba(192, 38, 212, 0.09); }
+.floating-shape--tint-3 { background: rgba(79, 70, 229, 0.08); }
+.floating-shape--tint-4 { background: rgba(236, 72, 153, 0.10); }
+
+/* ---------------------------------- Parallax ---------------------------------- */
+[data-parallax-speed] { will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-shape, .gradient-border-animated::before, .animated-gradient-bg, .glow-pulse {
+    animation: none !important;
+  }
+}

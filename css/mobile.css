@@ -1,0 +1,151 @@
+/* ==========================================================================
+   Aevy — Mobile fixes & performance
+   Loaded LAST. Fixes: sideways overflow, oversized spacing/type, header that
+   pushed the menu button off-screen, and removes GPU-heavy effects on phones
+   (backdrop blur, infinite animations, scroll reveals, hover transforms).
+   ========================================================================== */
+
+/* ---------------------------------- Global safety ---------------------------------- */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html, body { max-width: 100%; overflow-x: clip; }
+img, svg, video { max-width: 100%; }
+img { height: auto; }
+.brand__mark img, .hero-art img { height: 100%; }
+.hero-art img { height: auto; aspect-ratio: 1200 / 418; object-fit: cover; }
+
+/* Hero badge text was purple-on-purple (polish.css overrode the white). */
+.hero-eyebrow { color: #fff; }
+
+/* Skip the cost of painting off-screen sections until they are near the viewport */
+.section, .site-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* ---------------------------------- Touch devices: no hover transforms ---------------------------------- */
+@media (hover: none) {
+  .card:hover, .category-card:hover, .product-card:hover, .app-card:hover,
+  .card.product-card:hover, .hover-lift:hover, .hover-lift-sm:hover, .hover-lift-lg:hover,
+  .hover-scale:hover, .hover-scale-sm:hover,
+  .btn-primary:hover, .btn-secondary:hover, .btn-outline:hover,
+  .header-auth-buttons .btn:hover, .icon-btn:hover, .hero-trust__item .ico:hover,
+  .footer-social a:hover {
+    transform: none;
+  }
+  .category-card:hover .category-card__icon,
+  .category-card:hover .category-card__arrow { transform: none; }
+}
+
+/* ---------------------------------- Tablet & phone ---------------------------------- */
+@media (max-width: 860px) {
+  /* Kill every always-running / expensive effect */
+  body, .site-header, .hero, .hero-eyebrow, .hero h1, .hero h1 .text-gradient,
+  .hero p.hero-sub, .hero-actions, .hero-actions .btn, .hero-trust, .hero-art,
+  .hero-art img, .hero-art__blob, .hero-art::after,
+  .floating-shape, .gradient-border-animated::before, .animated-gradient-bg,
+  .glow-pulse, .float, .mobile-nav::before, .mobile-nav::after {
+    animation: none !important;
+  }
+  .floating-shapes, .pfx-hero-fx, .hero-art::after, .hero-art__blob { display: none !important; }
+  [data-parallax-speed] { transform: none !important; will-change: auto !important; }
+  .hero-art img { transform: none !important; }
+
+  /* Solid surfaces instead of live backdrop blur (the #1 cause of scroll jank) */
+  .site-header {
+    background: #fff;
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+    will-change: auto; transform: none;
+  }
+  .hamburger { backdrop-filter: none; -webkit-backdrop-filter: none; background: #fff; }
+  .mobile-nav {
+    background: #fff;
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+    box-shadow: -12px 0 32px rgba(16, 12, 30, 0.18);
+    height: 100dvh;
+    transition: opacity 180ms ease, visibility 180ms ease, transform 180ms ease;
+  }
+  .mobile-nav-backdrop { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: rgba(16, 12, 30, 0.45); }
+  .app-overlay, .region-dialog__backdrop { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .glass, .glass-dark, .backdrop-blur, .backdrop-blur-sm, .backdrop-blur-lg {
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+  }
+
+  /* Everything visible straight away — no scroll-reveal opacity/transform */
+  .grid-3 > *, .grid-4 > *, .product-grid > *, .section > .container, .site-footer {
+    opacity: 1 !important; transform: none !important; transition: none !important;
+  }
+  .category-card, .product-card, .card { will-change: auto; transition: border-color 150ms ease, box-shadow 150ms ease; }
+
+  /* Spacing — polish.css re-inflated section padding after responsive.css */
+  .section { padding-top: var(--space-10); padding-bottom: var(--space-10); }
+  .section-head { margin-bottom: var(--space-6); }
+
+  /* Header: one tidy row that always fits */
+  .header-inner { gap: var(--space-2); }
+  .header-inner .brand { min-width: 0; flex: 1 1 auto; }
+  .brand__mark { width: 36px; height: 36px; border-radius: 10px; }
+  .brand__name { font-size: 1.1rem; white-space: nowrap; }
+  .header-actions { gap: 8px; margin-left: auto; }
+  .header-actions .header-auth-buttons .btn { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  .hamburger { width: 42px; height: 42px; flex-shrink: 0; }
+
+  /* Page transition: no body fade on mobile */
+  .pfx-leaving { animation: none !important; }
+}
+
+/* ---------------------------------- Phones ---------------------------------- */
+@media (max-width: 640px) {
+  :root {
+    --fs-xl: 1.4rem;
+    --fs-2xl: 1.75rem;
+    --fs-3xl: 2rem;
+    --fs-4xl: 2.25rem;
+    --container-pad: 16px;
+  }
+  .hero { padding: var(--space-6) 0 var(--space-8); }
+  .hero-grid { gap: var(--space-6); }
+  .hero-art { max-width: 100%; border-radius: var(--radius-lg); }
+  .hero-art img { border-radius: var(--radius-lg); }
+  .hero h1 { font-size: 2rem; line-height: 1.12; }
+  .hero-sub { font-size: var(--fs-base); }
+  .hero-actions .btn-lg { padding: 13px 20px; font-size: 15px; }
+  .hero-trust { align-items: stretch; }
+  .hero-trust__item { text-align: left; }
+
+  /* Header: language picker shows the flag only; login lives in the drawer */
+  .header-actions .header-login { display: none; }
+  .rcpm-locale__trigger { height: 36px; padding: 0 8px; }
+  .rcpm-locale__chev { display: none; }
+
+  h2 { font-size: 1.4rem; }
+  .page-banner { padding: var(--space-8) 0; }
+  .card, .category-card { padding: var(--space-5); }
+  .footer-grid { gap: var(--space-8); }
+
+  /* Inputs at 16px stop iOS Safari zooming the page when focused */
+  input, select, textarea { font-size: 16px !important; }
+  .btn, .hamburger, .icon-btn, .mobile-nav a, .rcpm-locale__trigger { min-height: 40px; }
+
+  /* Floating chat button: smaller and safe-area aware */
+  .rcpm-chat-launcher { width: 52px; height: 52px; right: 14px; bottom: calc(14px + env(safe-area-inset-bottom)); }
+  .rcpm-chat-panel { left: 8px; right: 8px; width: auto; bottom: calc(76px + env(safe-area-inset-bottom)); height: min(72dvh, 560px); }
+
+  /* Modal / detail overlay fits the screen */
+  .app-overlay { padding: 0; align-items: stretch; }
+  .app-detail { border-radius: 0; min-height: 100%; }
+  .toast-container, #toast-container { left: 12px; right: 12px; max-width: none; }
+}
+
+@media (max-width: 360px) {
+  .brand__name { font-size: 1rem; }
+  .hero h1 { font-size: 1.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Drawer buttons: .mobile-nav a rule was turning the primary label dark */
+.mobile-nav .header-auth-buttons .btn-primary,
+.mobile-nav .header-auth-buttons .btn-primary:hover { color: #fff; padding-left: 20px; }
+.mobile-nav .header-auth-buttons .btn { justify-content: center; }

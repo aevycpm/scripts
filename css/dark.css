@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Aevy — Dark theme
+   Switched by <html data-theme="dark"> (Settings → Appearance).
+   Most of the site already reads colours from variables, so those are
+   re-mapped first; the rest of the file patches rules that hard-coded white.
+   ========================================================================== */
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-primary: #8B5CF6;
+  --color-primary-dark: #7C3AED;
+  --color-primary-light: #A78BFA;
+  --color-bg: #0F0B18;
+  --color-bg-alt: #151022;
+  --color-bg-soft: #1E1733;
+  --color-border: #2A2242;
+  --color-border-strong: #3B3159;
+  --color-text: #F2EFFA;
+  --color-text-muted: #ABA5C0;
+  --color-text-faint: #7F7996;
+
+  --brand-gradient-soft: linear-gradient(135deg, rgba(99, 102, 241, 0.18) 0%, rgba(192, 38, 212, 0.18) 100%);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.6);
+
+  --surface: #181228;
+  --surface-2: #151022;
+  --hdr-bg: rgba(15, 11, 24, 0.78);
+  --hdr-solid: #0F0B18;
+  --scrim: rgba(3, 1, 10, 0.62);
+}
+html[data-theme="light"] { color-scheme: light; }
+
+html[data-theme="dark"] body { background: var(--color-bg); color: var(--color-text); }
+
+/* ---- Surfaces that hard-coded #fff ---- */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .category-card,
+html[data-theme="dark"] .modal,
+html[data-theme="dark"] .feature-strip,
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] .faq-question,
+html[data-theme="dark"] .select-input,
+html[data-theme="dark"] .page-btn,
+html[data-theme="dark"] .view-toggle button,
+html[data-theme="dark"] .btn-secondary,
+html[data-theme="dark"] .social-auth button,
+html[data-theme="dark"] .footer-social a,
+html[data-theme="dark"] .icon-btn,
+html[data-theme="dark"] .user-chip,
+html[data-theme="dark"] .user-dropdown,
+html[data-theme="dark"] .search-suggestions,
+html[data-theme="dark"] .glass,
+html[data-theme="dark"] .rc-bub,
+html[data-theme="dark"] .rcpm-chat-panel,
+html[data-theme="dark"] .rcpm-chat-input,
+html[data-theme="dark"] .rcpm-chip,
+html[data-theme="dark"] .rcpm-chat-head__close,
+html[data-theme="dark"] .rcpm-chat-head__new,
+html[data-theme="dark"] .rcpm-msg--bot .rcpm-msg__bubble,
+html[data-theme="dark"] .rcpm-locale__trigger,
+html[data-theme="dark"] .rcpm-locale__panel {
+  background: var(--surface);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+html[data-theme="dark"] .user-dropdown { background: rgba(24, 18, 40, 0.92); }
+
+html[data-theme="dark"] .btn-secondary:hover,
+html[data-theme="dark"] .page-btn:hover,
+html[data-theme="dark"] .user-dropdown a:hover,
+html[data-theme="dark"] .user-dropdown button:hover,
+html[data-theme="dark"] .search-suggestions li a:hover { background: var(--color-bg-soft); }
+
+html[data-theme="dark"] .form-input,
+html[data-theme="dark"] .form-input:focus,
+html[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+  background-color: var(--surface-2);
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+}
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder { color: var(--color-text-faint); }
+html[data-theme="dark"] .rcpm-locale__search input,
+html[data-theme="dark"] .rcpm-chat-input input,
+html[data-theme="dark"] .rcpm-chat-input textarea { background: transparent; }
+
+/* page loader + decorative white veils */
+html[data-theme="dark"] .pfx-loader { background: var(--color-bg); }
+html[data-theme="dark"] .pfx-loader__text { color: var(--color-text); }
+html[data-theme="dark"] .hero-art::after,
+html[data-theme="dark"] .floating-shape { opacity: 0.12; }
+
+/* error banner */
+html[data-theme="dark"] .e2e-bar.bad { background: rgba(239, 68, 68, 0.14); color: #fca5a5; }
+
+/* Footer & mobile drawer leftovers from the old header */
+html[data-theme="dark"] .site-footer { background: var(--color-bg-alt); border-color: var(--color-border); }
+
+/* Logos/avatars with transparent backgrounds keep readable edges */
+html[data-theme="dark"] img { color-scheme: normal; }
+
+/* ---- Subtle polish: scrollbars & selection ---- */
+html[data-theme="dark"] ::selection { background: rgba(139, 92, 246, 0.45); color: #fff; }
+html[data-theme="dark"] * { scrollbar-color: #3B3159 transparent; }

@@ -1,0 +1,189 @@
+/* ==========================================================================
+   Aevy — Footer v2
+   A rounded, floating panel: call-to-action, link columns, bottom bar.
+   Uses its own class names (.ftr*) so none of the old .site-footer rules
+   (hidden-until-scrolled, content-visibility) apply to it.
+   ========================================================================== */
+
+.ftr {
+  margin-top: var(--space-16);
+  padding: 0 0 max(16px, env(safe-area-inset-bottom, 0px));
+  border-top: 0;
+  background: transparent;
+}
+
+.ftr__panel {
+  --ftr-bg: #150F24;
+  --ftr-text: #F4F1FB;
+  --ftr-muted: #A79FC0;
+  --ftr-line: rgba(255, 255, 255, 0.09);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 44px 44px 24px;
+  border-radius: 30px;
+  background:
+    radial-gradient(900px 340px at 12% -10%, rgba(124, 58, 237, 0.28), transparent 60%),
+    radial-gradient(700px 300px at 100% 0%, rgba(192, 38, 212, 0.18), transparent 62%),
+    var(--ftr-bg);
+  color: var(--ftr-text);
+  border: 1px solid var(--ftr-line);
+  box-shadow: 0 30px 70px -30px rgba(40, 20, 90, 0.55);
+}
+
+/* slow-moving gradient hairline on the top edge */
+.ftr__panel::before {
+  content: '';
+  position: absolute; z-index: 1;
+  left: 24px; right: 24px; top: 0; height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #4F46E5, #7C3AED, #C026D3, transparent);
+  background-size: 200% 100%;
+  animation: ftrShine 9s linear infinite;
+  opacity: 0.9;
+}
+@keyframes ftrShine { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+/* ---------------------------------- Call to action ---------------------------------- */
+.ftr__cta {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding-bottom: 32px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--ftr-line);
+}
+.ftr__cta h3 {
+  margin: 0 0 6px;
+  font: 800 clamp(1.3rem, 2.6vw, 1.75rem)/1.15 var(--font-display);
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.ftr__cta p { margin: 0; color: var(--ftr-muted); font-size: 0.95rem; max-width: 46ch; }
+.ftr__btn {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 48px; padding: 0 22px;
+  border-radius: 999px;
+  background: var(--brand-gradient);
+  color: #fff; font-weight: 700; font-size: 0.95rem; text-decoration: none; white-space: nowrap;
+  box-shadow: 0 12px 28px rgba(124, 58, 237, 0.4);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+}
+.ftr__btn svg { width: 18px; height: 18px; transition: transform 0.3s var(--ease-out); }
+.ftr__btn:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(124, 58, 237, 0.55); color: #fff; }
+.ftr__btn:hover svg { transform: translateX(4px); }
+.ftr__btn:active { transform: scale(0.97); }
+
+/* signed-in / signed-out variants (footer.js flips the attribute on <html>) */
+html:not([data-authed]) [data-user-only],
+html[data-authed] [data-guest-only] { display: none !important; }
+
+/* ---------------------------------- Columns ---------------------------------- */
+.ftr__grid {
+  display: grid;
+  grid-template-columns: 1.7fr repeat(4, 1fr);
+  gap: 32px;
+  padding-bottom: 36px;
+}
+.ftr__brand .brand { display: inline-flex; }
+.ftr__brand .brand__name { color: #fff; }
+.ftr__brand p { color: var(--ftr-muted); font-size: 0.875rem; line-height: 1.65; margin: 14px 0 20px; max-width: 30ch; }
+
+.ftr__social { display: flex; gap: 10px; }
+.ftr__social a {
+  width: 40px; height: 40px; border-radius: 12px;
+  display: grid; place-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--ftr-line);
+  color: #D9D3EA;
+  transition: transform 0.3s var(--ease-out), background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.ftr__social a:hover { background: var(--brand-gradient); border-color: transparent; color: #fff; transform: translateY(-3px) rotate(-6deg); }
+.ftr__social svg { width: 18px; height: 18px; }
+
+.ftr__col h4 {
+  margin: 0 0 14px;
+  font: 700 0.72rem/1 var(--font-body);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #fff;
+}
+.ftr__col ul { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.ftr__col a {
+  display: inline-flex; align-items: center;
+  padding: 5px 0;
+  color: var(--ftr-muted); font-size: 0.9rem; text-decoration: none;
+  transition: color 0.2s ease, transform 0.3s var(--ease-out);
+}
+.ftr__col a::after { display: none; }                   /* old underline effect from premium-fx.css */
+.ftr__col a:hover { color: #fff; transform: translateX(4px); }
+
+/* ---------------------------------- Bottom bar ---------------------------------- */
+.ftr__bar {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ftr-line);
+  font-size: 0.8rem; color: var(--ftr-muted);
+}
+.ftr__tools { display: flex; align-items: center; gap: 8px; }
+.ftr__chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 36px; padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--ftr-line);
+  color: #D9D3EA; font: 600 0.8rem/1 var(--font-body); cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s var(--ease-out), color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.ftr__chip svg { width: 16px; height: 16px; }
+.ftr__chip:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.22); color: #fff; }
+.ftr__chip:active { transform: scale(0.95); }
+.ftr__chip:focus-visible, .ftr__col a:focus-visible, .ftr__social a:focus-visible, .ftr__btn:focus-visible { outline: 2.5px solid #A78BFA; outline-offset: 3px; }
+.ftr__top { width: 36px; padding: 0; justify-content: center; }
+.ftr__top svg { transition: transform 0.3s var(--ease-out); }
+.ftr__top:hover svg { transform: translateY(-3px); }
+
+/* ---------------------------------- Reveal on scroll (armed by footer.js) ---------------------------------- */
+.ftr.is-armed [data-rv] { opacity: 0; transform: translateY(18px); }
+.ftr.is-armed.in [data-rv] {
+  opacity: 1; transform: none;
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transition-delay: calc(var(--d, 0) * 70ms);
+}
+
+/* ---------------------------------- Dark theme: lift the panel off the page ---------------------------------- */
+html[data-theme="dark"] .ftr__panel {
+  --ftr-bg: #181129;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.8);
+}
+
+/* ---------------------------------- Tablet ---------------------------------- */
+@media (max-width: 1024px) {
+  .ftr__panel { padding: 36px 32px 22px; }
+  .ftr__grid { grid-template-columns: repeat(4, 1fr); gap: 28px 20px; }
+  .ftr__brand { grid-column: 1 / -1; }
+  .ftr__brand p { max-width: 52ch; }
+}
+
+/* ---------------------------------- Phones ---------------------------------- */
+@media (max-width: 640px) {
+  .ftr { margin-top: var(--space-10); }
+  .ftr__panel { padding: 28px 20px 18px; border-radius: 24px; }
+  .ftr__cta { flex-direction: column; align-items: stretch; gap: 18px; padding-bottom: 24px; margin-bottom: 26px; }
+  .ftr__btn { justify-content: center; }
+  .ftr__grid { grid-template-columns: 1fr 1fr; gap: 26px 16px; padding-bottom: 26px; }
+  .ftr__col a { padding: 8px 0; }                       /* comfortable tap targets */
+  .ftr__bar { flex-direction: column-reverse; align-items: flex-start; gap: 14px; }
+  .ftr__tools { width: 100%; }
+  .ftr__tools .ftr__chip:not(.ftr__top) { flex: 1; justify-content: center; }
+  .ftr__tools .ftr__top { margin-left: auto; }
+}
+
+/* ---------------------------------- Calm mode ---------------------------------- */
+html[data-motion="reduced"] .ftr__panel::before { animation: none; }
+html[data-motion="reduced"] .ftr.is-armed [data-rv] { opacity: 1; transform: none; transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .ftr__panel::before { animation: none; }
+  .ftr.is-armed [data-rv] { opacity: 1; transform: none; transition: none; }
+}
+@media (max-width: 860px) { .ftr__panel::before { animation: none; } }   /* keep phones light */
