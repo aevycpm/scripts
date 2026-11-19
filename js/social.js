@@ -47,7 +47,10 @@
   }
   function counts(id) {
     var q = function (col) { return SB.from('follows').select('*', { count: 'exact', head: true }).eq(col, id).then(function (r) { return r.count || 0; }, function () { return 0; }); };
-    return Promise.all([q('following'), q('follower')]);   /* [followers, following] */
+    return Promise.all([q('following'), q('follower')]).then(function (c) {   /* [followers, following] */
+      var b = C.boost(A.byId(id)); if (b) c[0] = Math.max(c[0], b);          /* display-only boost from config.js */
+      return c;
+    });
   }
   function toggleFollow(id) {
     if (!me()) return Promise.reject(new Error('Log in first'));
@@ -58,7 +61,11 @@
   function people(id, kind) {   /* kind: 'followers' | 'following' */
     var col = kind === 'followers' ? 'follower' : 'following', other = kind === 'followers' ? 'following' : 'follower';
     return SB.from('follows').select(col).eq(other, id).order('created', { ascending: false }).limit(200).then(function (r) {
-      return (must(r) || []).map(function (x) { return A.byId(x[col]); }).filter(Boolean);
+      var ids = (must(r) || []).map(function (x) { return x[col]; });
+      var miss = ids.filter(function (i) { return !A.byId(i); });
+      return (miss.length ? A.refreshProfiles().catch(function () {}) : Promise.resolve()).then(function () {
+        return ids.map(function (i) { return A.byId(i); }).filter(Boolean);
+      });
     });
   }
   function followsMe(id) {

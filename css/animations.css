@@ -38,8 +38,8 @@
 }
 
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.35); }
-  50%      { box-shadow: 0 0 0 8px rgba(124, 58, 237, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.35); }
+  50%      { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); }
 }
 
 @keyframes ripple {
@@ -106,7 +106,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 2.5px solid rgba(124, 58, 237, 0.2);
+  border: 2.5px solid rgba(37, 99, 235, 0.2);
   border-top-color: var(--color-primary);
   animation: spin 700ms linear infinite;
 }

@@ -8,7 +8,15 @@
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 <link rel="alternate icon" type="image/png" href="assets/logo.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<meta name="theme-color" content="#7C3AED">
+<meta name="theme-color" content="#2563EB">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="application-name" content="Aevy">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Aevy">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="msapplication-TileColor" content="#2563EB">
+<meta name="msapplication-TileImage" content="assets/icons/icon-144.png">
 <link rel="stylesheet" href="css/variables.css">
 <link rel="stylesheet" href="css/style.css?v=2">
 <link rel="stylesheet" href="css/components.css">
@@ -24,6 +32,9 @@
 <link rel="stylesheet" href="css/header.css?v=1">
 <link rel="stylesheet" href="css/footer.css?v=1">
 <link rel="stylesheet" href="css/dark.css?v=1">
+<link rel="stylesheet" href="css/pro.css?v=1">
+<link rel="stylesheet" href="css/pwa.css?v=1">
+<link rel="stylesheet" href="css/featured.css?v=1">
 </head>
 <body>
 <div class="pfx-loader" aria-hidden="true">
@@ -121,6 +132,7 @@
       <div class="hdr-list">
         <a href="community.html" class="hdr-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Community</span></a>
         <a href="messages.html" class="hdr-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Messages</span><span data-unread-badge></span></a>
+        <a href="dashboard.html" class="hdr-row" data-user-only><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span>Dashboard</span></a>
       </div>
     </div>
     <div class="hdr-sec" style="--i:2">
@@ -144,6 +156,38 @@
     <h1>Community <span class="text-gradient">Games</span></h1>
     <p>Games shared by members. Sign in to upload yours.</p>
   </div>
+  <section class="container ft-wrap" aria-labelledby="ft-h">
+    <div class="ft-head"><h2 id="ft-h">Featured games</h2><small>Details from Google Play · Nov 2026</small></div>
+    <div class="ft-grid">
+      <article class="card ft-card">
+        <div class="ft-top">
+          <div class="ft-ico" aria-hidden="true"><img src="https://play-lh.googleusercontent.com/V0ZbjwNZPHG7uPaLmKF7Jpj3PpffKj6-jn1T_Ro0xRgR37xX8ylGxjajBWOzb_DoGq4Ik4Or2U0WG-W2OWNwhA=s256" alt="" width="72" height="72" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"><span style="position:absolute">CP</span></div>
+          <div><h3 translate="no">Car Parking Multiplayer</h3><div class="ft-dev" translate="no">olzhass · OGAMES, TOO</div></div>
+        </div>
+        <div class="ft-tags"><span>Simulation</span><span>Multiplayer</span><span>Parking</span><span>Tuning</span></div>
+        <div class="ft-stats"><div><b>4.5 ★</b><span>3.2M ratings</span></div><div><b>100M+</b><span>Downloads</span></div><div><b>3+</b><span>Rated for</span></div></div>
+        <p class="ft-desc">Open-world parking and driving game with multiplayer racing, free walking, voice chat, police mode and a friend list. Free, with ads and in-app purchases.</p>
+        <ul class="ft-list"><li>About 100 cars with real interiors and deep tuning (suspension, engine swaps, turbo, exhaust, visuals)</li><li>16 player skins</li><li>82 parking and driving challenges: tow trucks, pickups, trucks, sports cars, classics</li></ul>
+        <div class="ft-new"><b>What's new:</b> Construction and Time-Attack events, new location, new skins, new and reworked cars, creator's map ratings, bug fixes.</div>
+        <div class="ft-foot"><small>Updated Sep 24, 2026</small>
+          <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.olzhas.carparking.multyplayer&amp;hl=en" target="_blank" rel="noopener noreferrer">Get on Google Play</a></div>
+      </article>
+      <article class="card ft-card">
+        <div class="ft-top">
+          <div class="ft-ico" aria-hidden="true"><img src="https://media.appgoblin.info/app-icons/com.olzhas.carparking.multyplayer2/86da9d2ce63ada24_128.png" alt="" width="72" height="72" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"><span style="position:absolute">C2</span></div>
+          <div><h3 translate="no">Car Parking Multiplayer 2</h3><div class="ft-dev" translate="no">olzhass · OGAMES, TOO</div></div>
+        </div>
+        <div class="ft-tags"><span>Racing</span><span>Multiplayer</span><span>Open world</span><span>Tuning</span></div>
+        <div class="ft-stats"><div><b>4.3 ★</b><span>218K ratings</span></div><div><b>31.8M+</b><span>Downloads</span></div><div><b>Aug 2024</b><span>Released</span></div></div>
+        <p class="ft-desc">The sequel: an open-world driving game that mixes parking challenges, car customization and multiplayer racing on a large explorable map.</p>
+        <ul class="ft-list"><li>About 160 cars with detailed interiors and dyno runs</li><li>Manual gearbox with clutch, fuel system, custom liveries</li><li>Police, taxi, drone and drag-racing modes</li><li>Building interiors, gas stations and car services</li></ul>
+        
+        <div class="ft-foot"><small>Updated Nov 6, 2026</small>
+          <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.olzhas.carparking.multyplayer2&amp;hl=en" target="_blank" rel="noopener noreferrer">Get on Google Play</a></div>
+      </article>
+    </div>
+    <p class="ft-note">Ratings, download counts and dates come from the public store listings and change over time. Car Parking Multiplayer is a trademark of its developer; Aevy is not affiliated with them.</p>
+  </section>
   <div class="container fd-wrap" style="padding-bottom:var(--space-20)"><div id="feed-root" data-kind="game" data-title="Games"></div></div>
 </main>
 
@@ -195,6 +239,7 @@
             <li data-guest-only><a href="login.html" data-i18n="nav.login">Login</a></li>
             <li data-guest-only><a href="signup.html" data-i18n="nav.signup">Sign Up</a></li>
             <li data-user-only><a href="profile.html">My Profile</a></li>
+            <li data-user-only><a href="dashboard.html">Dashboard</a></li>
             <li data-user-only><a href="profile.html#downloads">My Downloads</a></li>
           </ul>
         </nav>
@@ -233,6 +278,8 @@
 <script src="js/header.js?v=1" defer></script>
 <script src="js/footer.js?v=1" defer></script>
 <script src="js/locale.js" defer></script>
+<script src="js/translate.js?v=1" defer></script>
+<script src="js/pwa.js?v=1" defer></script>
 <script src="js/chatbot.js?v=2" defer></script>
 <script src="js/feed.js" defer></script>
 </body>

@@ -64,9 +64,9 @@
 
     // Soft moving light blobs
     const blobConfigs = [
-      { size: 220, top: '8%', left: '12%', color: 'rgba(124,58,237,0.18)' },
-      { size: 260, top: '55%', left: '78%', color: 'rgba(192,38,212,0.15)' },
-      { size: 160, top: '75%', left: '30%', color: 'rgba(79,70,229,0.14)' },
+      { size: 220, top: '8%', left: '12%', color: 'rgba(37,99,235,0.08)' },
+      { size: 260, top: '55%', left: '78%', color: 'rgba(37,99,235,0.06)' },
+      { size: 160, top: '75%', left: '30%', color: 'rgba(47,111,235,0.14)' },
     ];
     blobConfigs.forEach((b, i) => {
       const blob = document.createElement('span');

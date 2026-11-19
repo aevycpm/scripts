@@ -55,7 +55,7 @@ html { scroll-behavior: smooth; }
 
 /* ---------------------------------- Glow shadows ---------------------------------- */
 .glow-shadow    { box-shadow: var(--shadow-glow); }
-.glow-shadow-lg { box-shadow: 0 14px 44px rgba(124, 58, 237, 0.5); }
+.glow-shadow-lg { box-shadow: 0 14px 44px rgba(37, 99, 235, 0.5); }
 .glow-pulse     { animation: pulseGlow 2.4s var(--ease-in-out) infinite; }
 
 /* ---------------------------------- Hover lift ---------------------------------- */
@@ -97,8 +97,8 @@ html { scroll-behavior: smooth; }
 .floating-shape--4 { width: 36px;  height: 36px;  top: 74%; right: 20%; background: rgba(255,255,255,0.28); animation-duration: 6s;  animation-delay: 2s; }
 
 /* Tinted variants for use on light/white backgrounds */
-.floating-shape--tint-1 { background: rgba(124, 58, 237, 0.10); }
-.floating-shape--tint-2 { background: rgba(192, 38, 212, 0.09); }
+.floating-shape--tint-1 { background: rgba(37, 99, 235, 0.10); }
+.floating-shape--tint-2 { background: rgba(37, 99, 235, 0.09); }
 .floating-shape--tint-3 { background: rgba(79, 70, 229, 0.08); }
 .floating-shape--tint-4 { background: rgba(236, 72, 153, 0.10); }
 

@@ -160,7 +160,7 @@
 
   function buildWidget() {
     const wrap = el(`
-      <div class="rcpm-locale">
+      <div class="rcpm-locale notranslate" translate="no">
         <button type="button" class="rcpm-locale__trigger" aria-haspopup="listbox" aria-expanded="false">
           <span class="rcpm-locale__flag">🌐</span>
           <span class="rcpm-locale__name"></span>

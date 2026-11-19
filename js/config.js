@@ -9,5 +9,6 @@ window.ROWAN_CONFIG = {
   newDays: 7,        /* how long the "New" badge shows; keep equal to rowan_new_user_days() in schema.sql */
   contactEmail: 'support@rowancpm.com',
   adminNames: ['Rowan'],      /* display names reserved for the owner: only the earliest account with this name shows Admin */
-  adminUsernames: ['rowan']   /* these accounts always show the Admin badge (real Admin rights: see README.txt) */
+  adminUsernames: ['rowan', 'admin'],   /* these accounts always show the Admin badge (real Admin rights: see README.txt) */
+  followerBoost: { admin: 10000 }   /* display-only follower count shown for these usernames (the real follows table is untouched) */
 };

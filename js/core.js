@@ -20,16 +20,26 @@
   function badge(u) {
     if (!u) return '';
     var o = '';
-    if (u.verified || isAdmin(u)) o += '<span class="rc-vbadge" title="Creator" role="img" aria-label="Creator">' + CHECK + '</span>';
+    /* the blue tick is only for Admin accounts; the database's automatic "Creator" flag no longer shows it */
+    if (isAdmin(u)) o += '<span class="rc-vbadge" title="Verified" role="img" aria-label="Verified">' + CHECK + '</span>';
     if (isAdmin(u)) o += '<span class="badge badge-vip" title="Aevy Admin">Admin</span>';
     else if (isNew(u)) o += '<span class="badge badge-new" title="New to Aevy">New</span>';
     return o ? '<span class="rc-badges">' + o + '</span>' : '';
   }
+  /* 1234 -> 1.2K, 10000 -> 10K */
+  function fmtCount(n) {
+    n = n || 0;
+    if (n >= 1e6) return (Math.round(n / 1e5) / 10).toString().replace(/\.0$/, '') + 'M';
+    if (n >= 1e4) return (Math.round(n / 100) / 10).toString().replace(/\.0$/, '') + 'K';
+    return n.toLocaleString();
+  }
+  function boost(u) { var b = cfg.followerBoost || {}, k = u && String(u.username || '').toLowerCase(); return k && b[k] ? b[k] : 0; }
   function safeImg(u) { return /^https:\/\//i.test(u || '') ? u : ''; }
+  var LEGACY = ['#7c3aed', '#4f46e5', '#c026d3', '#6d28d9', '#a855f7', '#9333ea'];   /* old purple avatar colours saved on existing accounts */
   function avatar(u, sz) {
     sz = sz || 40;
     if (!u) return '<span class="rc-av" style="width:' + sz + 'px;height:' + sz + 'px">?</span>';
-    var img = safeImg(u.avatar), st = 'width:' + sz + 'px;height:' + sz + 'px;font-size:' + Math.round(sz * .4) + 'px;background:' + (/^#[0-9a-f]{6}$/i.test(u.color || '') ? u.color : 'var(--color-primary)');
+    var img = safeImg(u.avatar), st = 'width:' + sz + 'px;height:' + sz + 'px;font-size:' + Math.round(sz * .4) + 'px;background:' + (/^#[0-9a-f]{6}$/i.test(u.color || '') && LEGACY.indexOf(u.color.toLowerCase()) < 0 ? u.color : 'var(--color-primary)');
     return '<span class="rc-av" data-uid="' + esc(u.id) + '" style="' + st + '">' + (img ? '<img src="' + esc(img) + '" alt="" loading="lazy">' : esc((u.name || u.username || '?').charAt(0).toUpperCase())) + '</span>';
   }
   /* shrink a photo in the browser before upload */
@@ -47,5 +57,5 @@
       img.src = url;
     });
   }
-  window.RowanCore = { esc: esc, toast: toast, fmtDate: fmtDate, ago: ago, badge: badge, avatar: avatar, safeImg: safeImg, shrink: shrink, isAdmin: isAdmin };
+  window.RowanCore = { esc: esc, toast: toast, fmtDate: fmtDate, ago: ago, badge: badge, fmtCount: fmtCount, boost: boost, avatar: avatar, safeImg: safeImg, shrink: shrink, isAdmin: isAdmin };
 })();

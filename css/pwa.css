@@ -1,0 +1,37 @@
+/* Aevy — installed-app UI: install banner, toast, standalone tweaks */
+.pwa-banner {
+  position: fixed; z-index: 960; left: 50%; bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  width: min(440px, calc(100vw - 24px)); transform: translate(-50%, 24px); opacity: 0; pointer-events: none;
+  display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 14px;
+  background: var(--glass, #fff); color: var(--color-text, #0f172a);
+  border: 1px solid var(--glass-edge, rgba(15,23,42,.1)); border-radius: 18px;
+  box-shadow: 0 18px 50px rgba(15,23,42,.28);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4);
+  transition: opacity .3s ease, transform .3s ease;
+}
+.pwa-banner.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+.pwa-banner img { border-radius: 11px; flex: none; }
+.pwa-banner__t { display: flex; flex-direction: column; min-width: 0; flex: 1; line-height: 1.3; }
+.pwa-banner__t b { font-size: 15px; }
+.pwa-banner__t span { font-size: 13px; color: var(--color-text-muted, #64748b); }
+.pwa-banner__go { font: inherit; font-weight: 700; font-size: 14px; color: #fff; background: var(--color-primary, #2563eb); border: 0; border-radius: 999px; padding: 9px 18px; cursor: pointer; flex: none; }
+.pwa-banner__x { font: inherit; font-size: 22px; line-height: 1; width: 32px; height: 32px; border-radius: 50%; border: 0; background: transparent; color: var(--color-text-muted, #64748b); cursor: pointer; flex: none; }
+.pwa-banner__go:focus-visible, .pwa-banner__x:focus-visible, .pwa-toast button:focus-visible { outline: 2px solid var(--color-primary, #2563eb); outline-offset: 2px; }
+
+.pwa-toast {
+  position: fixed; z-index: 980; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+  max-width: calc(100vw - 24px); display: flex; align-items: center; gap: 14px;
+  padding: 12px 18px; border-radius: 14px; font-size: 14px; font-weight: 500;
+  background: #0f172a; color: #f1f5f9; box-shadow: 0 12px 36px rgba(0,0,0,.35);
+  transition: opacity .25s ease, transform .25s ease;
+}
+.pwa-toast.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+.pwa-toast button { font: inherit; font-weight: 700; color: #7db0ff; background: none; border: 0; cursor: pointer; padding: 2px 4px; }
+
+/* running as an installed app */
+html.is-app { overscroll-behavior-y: none; }
+html.is-app body { -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; }
+html.is-app .pwa-banner { display: none; }
+@media (display-mode: standalone) { html { -webkit-user-select: none; user-select: none; } input, textarea, [contenteditable], p, h1, h2, h3, .fd-title { -webkit-user-select: text; user-select: text; } }
+@media print { .pwa-banner, .pwa-toast { display: none; } }

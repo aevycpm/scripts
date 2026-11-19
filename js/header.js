@@ -32,7 +32,7 @@
     var theme = resolveTheme(pref);
     root.setAttribute('data-theme', theme);
     var meta = $('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0F0B18' : '#7C3AED');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0B0E14' : '#2563EB');
     var seg = $('.hdr-seg');
     if (seg) {
       var order = ['light', 'dark', 'system'];

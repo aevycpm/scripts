@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Offline — Aevy</title><meta name="theme-color" content="#2563EB">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<style>
+:root{color-scheme:light dark}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:24px;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#0b1220;color:#e8edf7;text-align:center}
+main{max-width:420px}img{width:84px;height:84px;border-radius:22px;box-shadow:0 10px 30px rgba(37,99,235,.45)}
+h1{font-size:26px;margin:22px 0 8px;letter-spacing:-.01em}p{color:#9aa7bd;line-height:1.6;margin:0 0 22px}
+button{font:inherit;font-weight:700;color:#fff;background:#2563eb;border:0;border-radius:999px;padding:12px 26px;cursor:pointer}
+button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+</style></head><body><main>
+<img src="assets/icons/icon-192.png" alt="" width="84" height="84">
+<h1>You're offline</h1>
+<p>Aevy can't reach the internet right now. Pages you opened before are still available. Check your connection and try again.</p>
+<button type="button" onclick="location.reload()">Try again</button>
+</main>
+<script>addEventListener('online',function(){location.reload()})</script>
+</body></html>

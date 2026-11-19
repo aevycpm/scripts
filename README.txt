@@ -31,6 +31,11 @@ index.html / apps / scripts / games
 user.html?u=<username>     public profile: followers, following, posts, scripts
 
 Admin: run in the SQL editor:  update public.profiles set role = 'admin' where username = 'rowan';
+For the @admin account (real Admin rights + blue Verified tick in the database):
+  update public.profiles set role = 'admin', verified = true where username = 'admin';
+The Admin + blue badge already show for 'admin' without this, because js/config.js lists it in adminUsernames.
+Follower count: js/config.js -> followerBoost { admin: 10000 } shows 10K on that profile (display only; the follows table and the
+followers list stay real). Remove the line to show real numbers.
 
 Header (v2)
 -----------
@@ -41,3 +46,28 @@ Same markup on every page (css/header.css, css/dark.css, js/header.js).
   Settings:  language (js/locale.js mounts into [data-locale-mount]), theme Light/Dark/Auto, reduce animations.
   Saved in localStorage: aevy_theme ("light"/"dark", absent = Auto) and aevy_motion ("reduced"/"full").
 To add a page: add one <a> to the Menu panel in each .html file (look for id="hdr-menu").
+
+Creator dashboard (dashboard.html)
+----------------------------------
+Signed-in members see totals (followers, uploads, downloads, likes, comments), uploads over time (7/30/90 days),
+a breakdown by type, top uploads, recent followers and comments, and a searchable list where they can edit or
+delete their own uploads. Linked from the menu, the account dropdown and the footer.
+
+Language (js/translate.js)
+--------------------------
+The picker now translates the WHOLE page (all text, including content drawn by JavaScript) with Google's free
+website translation engine, and remembers the choice on every page. English restores the original text.
+Names, usernames, file names and code are marked translate="no". Needs internet access to translate.google.com.
+
+Web app / install (PWA) for Android and Windows
+-----------------------------------------------
+Files: manifest.webmanifest, sw.js (service worker), offline.html, js/pwa.js, css/pwa.css, assets/icons/*.
+- Needs HTTPS (or localhost). Host the folder on any HTTPS host (Netlify, Vercel, Cloudflare Pages, GitHub Pages).
+- Android (Chrome / Edge / Samsung Internet): an "Install Aevy" banner appears, and the menu has "Install app".
+- Windows (Edge / Chrome): same banner and menu row, or the install icon in the address bar. Installs as its own window
+  with a Start-menu / taskbar icon.
+- iPhone / iPad (Safari): Share -> Add to Home Screen (a hint banner explains it).
+- Offline: pages you opened before still open; anything new shows offline.html. Login, posts and uploads need internet.
+- After you change files, bump VERSION in sw.js (for example 'aevy-v2') so installed apps update; users see "A new version is ready".
+- Real store packages: give the hosted https URL to https://www.pwabuilder.com to get an Android app bundle (Google Play)
+  and a Windows MSIX package (Microsoft Store).
